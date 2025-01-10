@@ -25,7 +25,10 @@ export const getUserBySessionTokenFxn = async (req: express.Request, res: expres
 export const getUserTranscripts = async (req: express.Request, res: express.Response) => {
     try {
         const currentUserId = get(req, 'identity._id') as string;
-        const user = await getUserById(currentUserId).populate("transcripts")
+        const user = await getUserById(currentUserId).populate({
+            path: "transcripts",
+            options: { sort: { updatedAt: -1 } }
+        });
         return res.status(200).json(user.transcripts).end()
     } catch (error) {
         console.log(error)
