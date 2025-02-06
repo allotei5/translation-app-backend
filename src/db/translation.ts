@@ -8,6 +8,7 @@ interface Translation extends mongoose.Document {
   translatedText: string;
   originalLanguage: string;
   translatedLanguage: string;
+  audioUrl?: string;
 }
 
 const TranslationSchema = new mongoose.Schema<Translation>(
@@ -17,6 +18,7 @@ const TranslationSchema = new mongoose.Schema<Translation>(
     translatedText: { type: String, required: true },
     originalLanguage: { type: String, required: true },
     translatedLanguage: { type: String, required: true },
+    audioUrl: { type: String },
   },
   { timestamps: true }
 );
